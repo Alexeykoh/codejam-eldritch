@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+//font-family: 'Comfortaa', cursive;
+//
+@import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
+//font-family: 'Kdam Thmor Pro', sans-serif;
+//
+*,
+*::after,
+*::before {
+	margin  : 0;
+	padding : 0;
+}
+
+html {
+	font-family : "Comfortaa", cursive;
+	transition  : .5s;
+	
+}
+
+body {
+	box-sizing  : border-box;
+	overflow    : hidden;
+	user-select : none;
+	animation   : pulsation 100s infinite ease-in-out;
+	
+}
+
+a {
+	text-decoration : none;
+}
+
+ol, ul {
+	list-style : none;
+}
+
+button {
+	cursor : pointer;
+}
+
+img, svg {
+	max-width : 100%;
+	height    : auto;
+}
+
+
+h1, h2, h3, h4, p, li, a, {
+	padding : 0;
+	margin  : 0;
+}
+
+@keyframes pulsation {
+	0% {
+		background-size : 100%;
+	}
+	50% {
+		background-size : 110%;
+	}
+	100% {
+		background-size : 100%;
+	}
+}
