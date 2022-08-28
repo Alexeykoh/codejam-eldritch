@@ -40,35 +40,40 @@ const giveCard = () => {
 	function deleteCard(stage,color){
 		let actuality = stackState.masterStack[stage][color].length
 		if (actuality > 0){
-			const newImg = document.createElement('img')
-			newImg.setAttribute('src',`${stackState.masterStack[stage][color][0].cardFace}`)
-			newImg.setAttribute('alt','card_img')
-			newImg.style.left = stackState.transition + 'px' //toTop
-			newImg.style.animation = 'toTop .5s'
-			let styleColor;
-			switch (color){
-				case 'greenCards':
-					styleColor = 'green'
-					break
-				case 'blueCards':
-					styleColor = 'blue'
-					break
-				case 'brownCards':
-					styleColor = 'brown'
-					break
+			let img = new Image()
+			img.src = stackState.masterStack[stage][color][0].cardFace
+			img.onload = () => {
+				const newImg = document.createElement('img')
+				newImg.setAttribute('src',`${img.src}`)
+				newImg.setAttribute('alt','card_img')
+				newImg.style.left = stackState.transition + 'px' //toTop
+				newImg.style.animation = 'toTop .5s'
+				let styleColor;
+				switch (color){
+					case 'greenCards':
+						styleColor = 'green'
+						break
+					case 'blueCards':
+						styleColor = 'blue'
+						break
+					case 'brownCards':
+						styleColor = 'brown'
+						break
+				}
+				newImg.style.boxShadow = `0 0 20px ${styleColor}`
+				stackState.transition += 50;
+				document.querySelector('.card__stack').appendChild(newImg)
+				//
+				stackState.masterStack[stage][color].splice(0,1)
+				renderCircles(stackState.masterStack)
+				document.querySelector(`.${stage}.${color}`).style.animation = 'top .5s'
+				//
+				setTimeout(()=>{
+					document.querySelector(`.${stage}.${color}`).style.animation = ''
+				},500)
+				//
 			}
-			newImg.style.boxShadow = `0 0 20px ${styleColor}`
-			stackState.transition += 50;
-			document.querySelector('.card__stack').appendChild(newImg)
-			//
-			stackState.masterStack[stage][color].splice(0,1)
-			renderCircles(stackState.masterStack)
-			document.querySelector(`.${stage}.${color}`).style.animation = 'thanos .5s'
-			//
-			setTimeout(()=>{
-				document.querySelector(`.${stage}.${color}`).style.animation = ''
-			},100)
-			//
+			
 			
 		} else {
 			giveMeCard ()
